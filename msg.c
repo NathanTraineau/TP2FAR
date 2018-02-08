@@ -20,9 +20,8 @@ int main(void){
 			write(descr[1], &entier, sizeof(int));
 			printf("Continuer ? 0 : oui, 1 : non");
 			scanf("%d", &booleen);
-	}
-	
-	else {
+		}
+	}else{
 		close(descr[1]);
 		int somme = 0;
 		int msg ;
@@ -36,8 +35,7 @@ int main(void){
 		int moy = somme / cpt;
 		printf("La moyenne est %d", moy);
 	}
-	return EXIT_SUCCESS
-}
+	return EXIT_SUCCESS;
 }
 	
 

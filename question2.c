@@ -7,32 +7,29 @@
 int main(void){
 	pid_t pid;
 	int i = 0;
-	int nb [ 100];
 	int descr[2];
-	int somme;
+	int descr2[2];
+	int somme = 0;
 	pipe(descr);
+	pipe(descr2);
 	pid = fork();
 	if (pid != 0){
+		printf("Je suis le père");
 		while (i<5 ){
-			nb = i;
-			write (descr[1], &nb, sizeof(int));
-			printf("%s", &nb);
+			write (descr[1], &i, sizeof(int));
+			printf("%d", i);
 			i=i+1;
 		}
+		int res;
+		while(read( descr2[0], &res, sizeof(int)) != 0){}
+		printf("La somme est : %d", res);
+
 	} 
-	else if (pid == 0){
-				while( read( descr[0], &nb, sizeof(int))){
-				somme = somme + nb;
-			}
-				write (descr[1], &somme, sizeof(int));
-	}	
-	else { 
-		while (wait (0) != -1){};
-		if (pid != 0){
-			while( read( descr[0], &nb, sizeof(int))){ #Ca repars de là ou on a pas lu ou au tout début ?
-				&somme = &nb ; 
-			printf("La somme est = %d \n", somme)
-			}
+	else{
+		int nb;
+		while(read( descr[0], &nb, sizeof(int)) != 0){
+			somme = somme + nb;
 		}
+		write (descr2[1], &somme, sizeof(int));
 	}
 }
