@@ -3,6 +3,7 @@
 #include <unistd.h>
 #include <sys/wait.h>
 
+
 int main(void){
 	pid_t pid;
 	
@@ -35,8 +36,13 @@ int main(void){
 		int moy = somme / cpt;
 		printf("La moyenne est %d", moy);
 	}
+	return EXIT_SUCCESS
 }
-		
+}
+	
+
+
+
 
 
 
