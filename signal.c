@@ -27,5 +27,5 @@ int main(void){
 		if(res<0){
 			signal(SIGUSR1, traitement);
 		}
-
 	}
+}
